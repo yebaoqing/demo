@@ -1,8 +1,10 @@
 package com.example.demo.controller;
 
 import com.example.demo.domain.Demo;
+import com.example.demo.domain.Result;
 import com.example.demo.repository.DemoRepository;
-import com.example.demo.service.Demoservice;
+import com.example.demo.service.DemoService;
+import com.example.demo.utils.ResultUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -22,7 +24,7 @@ public class DemoController {
     private DemoRepository demoRepository;
 
     @Autowired
-    private Demoservice demoservice;
+    private DemoService demoService;
 
     /**
      * 查询所有列表
@@ -41,21 +43,35 @@ public class DemoController {
      * @return
      */
     @PostMapping(value = "/demo2")
-    public Demo demoAdd(@Valid Demo demo, BindingResult bindingResult
-                        // @RequestParam("cupSize") String cupSize,
-                        //  @RequestParam("age") Integer age
+    public Result<Demo> demoAdd(@Valid Demo demo, BindingResult bindingResult
+                          // @RequestParam("cupSize") String cupSize,
+                          //  @RequestParam("age") Integer age
     ){
         if(bindingResult.hasErrors()){
-            System.out.println(bindingResult.getFieldError().getDefaultMessage());
-            return  null;
+          //  Result result = new Result();
+         //   result.setCode(1);
+         //   result.setMsg(bindingResult.getFieldError().getDefaultMessage());
+           // result.setDate(null);
+
+           // System.out.println(bindingResult.getFieldError().getDefaultMessage());
+           // return  result;
+            return  ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
         }
         //Demo demo = new Demo();
        // demo.setCupSize(cupSize);
         //demo.setAge(age);
-        demo.setAge(demo.getAge());
-        demo.setCupSize(demo.getCupSize());
+       // demo.setAge(demo.getAge());
+     //   demo.setCupSize(demo.getCupSize());
+      //  demo.setMoney(demo.getMoney());
 
-        return demoRepository.save(demo);
+       // Result result = new Result();
+      //  result.setCode(0);
+       // result.setMsg("成功");
+       // result.setDate(demo);
+
+       // return demoRepository.save(demo);
+        //return  result;
+        return ResultUtil.success(demoRepository.save(demo));
     }
 
     //查询一个demo
@@ -98,8 +114,14 @@ public class DemoController {
     //插入demo
     @PostMapping(value = "/demo3")
     public void demoAddTwo(){
-       demoservice.insetTwo();
+        demoService.insetTwo();
     }
+
+    @GetMapping(value = "demo/getAge/{id}")
+    public void getAge(@PathVariable("id") Integer id) throws  Exception{
+        demoService.getAge(id);
+    }
+
 }
 
 

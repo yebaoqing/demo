@@ -19,8 +19,5 @@ public interface DemoRepository extends JpaRepository<Demo,Integer> {
     @Query(value = "select * from demo d where d.age < ?1" , nativeQuery = true)
     public List<Demo> getDemoByAge(Integer age);
 
-    //自定义sql 持久化query 修改注解
-    /*@Modifying
-    @Query("select d from demo d where d.cupSize =:cupSize")
-    public List<Demo> getA(@Param("cupSize") String cupSize);*/
+
 }
