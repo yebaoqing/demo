@@ -1,13 +1,11 @@
 package com.example.demo.controller;
 
-import com.example.demo.aspect.HttpAspect;
 import com.example.demo.domain.Demo;
 import com.example.demo.repository.DemoRepository;
 import com.example.demo.service.Demoservice;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.factory.annotation.Value;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
@@ -89,6 +87,12 @@ public class DemoController {
     @GetMapping(value = "/demo/age/{age}")
     public List<Demo> getDemoByAge(@PathVariable("age") Integer age){
         return  demoRepository.findByAge(age);
+    }
+
+    //通过sql查询age
+    @GetMapping(value = "/demo/a/{age}")
+    public List<Demo> getCupSize( @PathVariable("age") Integer age){
+        return  demoRepository.getDemoByAge(age);
     }
 
     //插入demo

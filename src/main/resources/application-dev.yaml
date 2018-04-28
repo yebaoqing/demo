@@ -1,5 +1,0 @@
-server:
-  port: 8080
-demo:
- cupSize: hello woerld
- age: 18
