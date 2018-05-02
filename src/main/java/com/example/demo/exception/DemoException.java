@@ -1,12 +1,18 @@
 package com.example.demo.exception;
 
+import com.example.demo.enums.ResultEnum;
+
 public class DemoException extends  RuntimeException{
 
     private  Integer code;
 
-    public DemoException(Integer code,String message) {
+    /*public DemoException(Integer code,String message) {
         super(message);
         this.code = code;
+    }*/
+    public DemoException(ResultEnum resultEnum) {
+        super(resultEnum.getMsg());
+        this.code = resultEnum.getCode();
     }
 
     public Integer getCode() {

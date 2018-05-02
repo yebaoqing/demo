@@ -1,6 +1,7 @@
 package com.example.demo.service;
 
 import com.example.demo.domain.Demo;
+import com.example.demo.enums.ResultEnum;
 import com.example.demo.exception.DemoException;
 import com.example.demo.repository.DemoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -32,13 +33,22 @@ public class DemoService {
         Integer age = demo.getAge();
         if (age < 10){
             //毛都没长齐
-            throw new DemoException(100,"毛都没长齐");
+            throw new DemoException(ResultEnum.PRIMARY_SCHOOL);
         }else if (age > 10 && age <16){
             //小嫩逼
-            throw new DemoException(101,"小嫩逼");
+            throw new DemoException(ResultEnum.MIDDLE_SCHOOL);
         }else {
             //加钱
-            throw new DemoException(102,"加钱");
+            throw new DemoException(ResultEnum.HIGH_SCHOOL);
         }
+    }
+
+    /**
+     *通过id查询信息
+     * @param id
+     * @return
+     */
+    public  Demo findOne(Integer id){
+        return demoRepository.findOne(id);
     }
 }

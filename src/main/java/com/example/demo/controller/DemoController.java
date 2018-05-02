@@ -55,7 +55,9 @@ public class DemoController {
 
            // System.out.println(bindingResult.getFieldError().getDefaultMessage());
            // return  result;
-            return  ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+
+        //    return  ResultUtil.error(1,bindingResult.getFieldError().getDefaultMessage());
+      return null;
         }
         //Demo demo = new Demo();
        // demo.setCupSize(cupSize);
@@ -117,6 +119,7 @@ public class DemoController {
         demoService.insetTwo();
     }
 
+    //根据id获取 通过年龄判断
     @GetMapping(value = "demo/getAge/{id}")
     public void getAge(@PathVariable("id") Integer id) throws  Exception{
         demoService.getAge(id);
