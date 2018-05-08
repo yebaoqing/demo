@@ -69,6 +69,11 @@
 			<artifactId>spring-boot-starter-jdbc</artifactId>
 			<version>1.5.4.RELEASE</version>
 		</dependency>
+
+		<dependency>
+			<groupId>mysql</groupId>
+			<artifactId>mysql-connector-java</artifactId>
+		</dependency>
 	</dependencies>
 
 	<build>

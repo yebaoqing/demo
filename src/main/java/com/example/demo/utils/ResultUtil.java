@@ -11,9 +11,9 @@ public class ResultUtil {
         result.setDate(object);
         return  result;
     }
-    public  static Result success(){
+    /*public  static Result success(){
         return  success(null);
-    }
+    }*/
     public  static Result error(Integer code,String msg){
         Result result = new Result();
         result.setCode(code);
